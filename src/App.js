@@ -126,16 +126,19 @@ class Main extends React.Component {
   }
 
   reportToOffice(markedTrees){
+    //We will put the new val as is to update the session storage
     var newVal = parseInt(this.state.items[this.state.currentRanger['relatedKey']]['Count']) + markedTrees;
     this.state.items[this.state.currentRanger['relatedKey']]['Count'] = newVal;
     sessionStorage.Rangers = JSON.stringify(this.state.items);
 
+    //Set state to render the App
     this.setState({
         isLoaded: true,
         items: this.state.items,
         currentRanger : this.getCurrentRanger(this.state.items)
       });
 
+    //Send data to API in order to update data json and send event to requestbin
     var formData = new FormData();
     formData.append("action","update");
     formData.append("rangerID", this.state.currentRanger['relatedID']);
@@ -202,7 +205,9 @@ class Ranger extends React.Component {
 
   markTree(){
     this.props.data.CurrentCount++;
+    //Set state to render the app
     this.setState({});
+    //Update requestbin that an event had occurred
     fetch('https://ranger-api.herokuapp.com/?event=userMarkedTree',
       {method: "GET"
       }
@@ -266,6 +271,7 @@ class Ranger extends React.Component {
       }
     }
     else {    
+      //Put loader until all data is fetched
       return(
           <Card>
             <CardBody className="Loading"/>
