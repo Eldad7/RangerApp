@@ -13,9 +13,10 @@ There you will find:
 * usrs.json file
 
 Technologies used:
-Heroku for hosting of Application and API
-S3 for hosting of rangers.json file
-PHP for API and React for App
-The PHP API is logging all requests sent to API on requestbin with the bin: http://requestbin.fullcontact.com/16gffks1?inspect
+* Heroku for hosting of Application and API
+* S3 for hosting of rangers.json file
+* PHP for API and React for App
+
+*The PHP API is logging all requests sent to API on requestbin with the bin: http://requestbin.fullcontact.com/16gffks1?inspect
 
 For installations required with NPM please see package.json
