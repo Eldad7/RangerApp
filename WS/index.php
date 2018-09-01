@@ -1,5 +1,4 @@
 <?php
-	//Headers to enable requests
 	header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
     header('Access-Control-Allow-Credentials: true');
     header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
@@ -8,11 +7,10 @@
 
 	//Send data to requestbin
 	if (!empty($_GET))
-		$res = file_get_contents('http://requestbin.fullcontact.com/16gffks1?data='.http_build_query($_GET));
+		$res = file_get_contents('http://requestbin.fullcontact.com/16gffks1?'.http_build_query($_GET));
 	else
-		$res = file_get_contents('http://requestbin.fullcontact.com/16gffks1?data='.http_build_query($_POST));
+		$res = file_get_contents('http://requestbin.fullcontact.com/16gffks1?'.http_build_query($_POST));
 
-	//Verify user
 	$usrs = json_decode(file_get_contents('data/usrs.json'),true);
 	$user = false;
 	foreach ($usrs as $usr) {
@@ -22,7 +20,6 @@
 	if (!$user)
 		die('{"status" : "error", "errorMessage" : "Invalid credentials"}');
 
-	//After users are verified, we will collect data only of validation is OK
 	$url = 'http://clanplayrangers.s3-eu-west-1.amazonaws.com/rangers.json';
 	$response = false;
 	if (($_POST['action'] === 'fetch') && ($user === 'fetchUser')) {

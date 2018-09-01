@@ -208,7 +208,7 @@ class Ranger extends React.Component {
     //Set state to render the app
     this.setState({});
     //Update requestbin that an event had occurred
-    fetch('https://ranger-api.herokuapp.com/?event=userMarkedTree',
+    fetch('https://ranger-api.herokuapp.com/?event=userMarkedTree&Ranger='+this.props.data.Name+'&currentCount='+this.props.data.CurrentCount,
       {method: "GET"
       }
           )
